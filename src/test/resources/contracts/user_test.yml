@@ -1,0 +1,9 @@
+name: "should return users"
+
+request:
+  url: /users
+  method: GET
+
+response:
+  status: 200
+  bodyFromFile: user.json

@@ -14,11 +14,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping
     public List<User> get(){
-        List<User> users = new ArrayList<>();
-        users.add(new User("李四", 12));
-        users.add(new User("张三", 14));
-        return users;
+        return userService.getAll();
     }
 }

@@ -27,8 +27,8 @@ public abstract class BaseMvcTest {
     @Before
     public void setUpUserControllerData() {
         List<User> users = new ArrayList<>();
-        users.add(new User("李四", 12));
-        users.add(new User("张三", 14));
+        users.add(new User(1L,"张三","test1","test1"));
+        users.add(new User(2L,"李四","test2","test2"));
         given(userService.getAll()).willReturn(users);
     }
 }

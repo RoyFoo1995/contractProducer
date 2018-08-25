@@ -1,4 +1,6 @@
 package com.thoughtworks.contractProducer.repository;
 
-public class UserRepository {
-}
+import com.thoughtworks.contractProducer.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,Long>{}

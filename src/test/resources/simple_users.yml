@@ -1,0 +1,9 @@
+user:
+  - id: 1
+    name: "张三"
+    role: "test1"
+    password: "123"
+  - id: 2
+    name: "李四"
+    role: "test2"
+    password: "321"

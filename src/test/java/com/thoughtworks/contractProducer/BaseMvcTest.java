@@ -1,36 +1,31 @@
 package com.thoughtworks.contractProducer;
 
+import com.github.database.rider.core.api.configuration.DBUnit;
+import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.spring.api.DBRider;
 import com.thoughtworks.contractProducer.controller.UserController;
-import com.thoughtworks.contractProducer.model.User;
-import com.thoughtworks.contractProducer.service.UserService;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.BDDMockito.given;
-
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(classes = ContractProducerApplication.class,webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@RunWith(SpringRunner.class)
+@DBRider
+@DBUnit(caseSensitiveTableNames = true)
+@DataSet("simple_users.yml")
+@ActiveProfiles("test")
 public abstract class BaseMvcTest {
 
-    @Mock
-    private UserService userService;
+    @Autowired
+    private UserController userController;
+
     @Before
     public void setupController() {
-        RestAssuredMockMvc.standaloneSetup(new UserController(userService));
+        RestAssuredMockMvc.standaloneSetup(userController);
     }
-
-    @Before
-    public void setUpUserControllerData() {
-        List<User> users = new ArrayList<>();
-        users.add(new User(1L,"张三","test1","test1"));
-        users.add(new User(2L,"李四","test2","test2"));
-        given(userService.getAll()).willReturn(users);
-    }
-
 
 }

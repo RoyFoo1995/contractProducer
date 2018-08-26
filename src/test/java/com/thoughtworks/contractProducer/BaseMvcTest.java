@@ -31,4 +31,6 @@ public abstract class BaseMvcTest {
         users.add(new User(2L,"李四","test2","test2"));
         given(userService.getAll()).willReturn(users);
     }
+
+
 }

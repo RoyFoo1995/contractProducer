@@ -23,6 +23,7 @@ public class UserController {
 
     @GetMapping
     public List<User> get(){
+        System.out.println(userService.getAll());
         return userService.getAll();
     }
 }
